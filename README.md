@@ -8,7 +8,7 @@ pip install requests
 ```
 ## Установка парсера:
 ```
-git clone https://github.com/neyxezz/ddnet-parser.git
+git clone https://github.com/neyxezz/ddnet-parser.git ddnet_parser
 ```
 Существуют 3 фабричные функции:
 
