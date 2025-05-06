@@ -6,7 +6,10 @@
 ```
 pip install requests
 ```
-
+## Установка парсера:
+```
+git clone https://github.com/neyxezz/ddnet-parser.git
+```
 Существуют 3 фабричные функции:
 
 ## GetServers(address=None)
@@ -27,18 +30,18 @@ print(servers.get_count())
 ```python
 from ddnet_parser import GetClients
 
-servers = GetClients()
-print(servers.get_())
+clients = GetClients()
+print(clients.get_clients(count=True))
 ```
  ## GetPlayerStats(name)
 *  Получает объект для парсинга статистики игрока
 
 Пример:
 ```python
-from ddnet_parser import GetServers
+from ddnet_parser import GetPlayerStats
 
-servers = GetServers()
-print(servers.get_count())
+player = GetPlayerStats("nameless tee")
+print(player.get_total_seconds_played())
 ```
 
 ## Подробная документация с примерами:
