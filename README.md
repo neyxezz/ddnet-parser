@@ -46,7 +46,7 @@ print(clients.get_clients(count=True))
 ```python
 from ddnet_parser import GetPlayerStats
 
-player = GetPlayerStats("nameless tee")
+player = GetPlayerStats("neyxezz")
 print(player.get_total_seconds_played())
 ```
 
