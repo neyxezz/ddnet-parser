@@ -52,7 +52,7 @@ print(player.get_total_seconds_played())
 
 ## Подробная документация с примерами:
 *  Подробная документация: [🙂](docs/docs.md)
-*  Примеры: [🙂(examples/examples.py)
+*  Примеры: [🙂](examples/examples.py)
 
 ## Связь со мной
 tg main: @neyxezz, tg twink: @neyxezz_twink
