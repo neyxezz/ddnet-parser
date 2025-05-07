@@ -6,7 +6,7 @@ class ServersParser:
         self.address = address
 
     def update(self):
-        self.response = _fetch_data()
+        self.response = _fetch_master_data()
 
     def _get_server_by_address(self) -> dict or None:
         for server in self.response["servers"]:
