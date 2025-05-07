@@ -9,6 +9,8 @@ class ServersParser:
         self.response = _fetch_master_data()
 
     def _get_server_by_address(self) -> dict or None:
+        if not self.address:
+            raise ValueError("Не указан адрес в GetServers")
         for server in self.response["servers"]:
             if self.address in [x.split("//")[-1] for x in server["addresses"]]:
                 return server
