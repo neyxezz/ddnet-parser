@@ -6,12 +6,10 @@ class ClientsParser:
         self.address = address
 
     def update(self):
-        #updates data from master
-        self.response = _fetch_data()
+        self.response = _fetch_master_data()
 
     def _get_clients(self) -> list:
         clients = []
-        #get clients in one server if address specified, else all clients in all servers
         for server in self.response["servers"]:
             addresses = [x.split("//")[-1] for x in server["addresses"]]
             if not self.address or self.address in addresses:
@@ -20,7 +18,6 @@ class ClientsParser:
         return clients
 
     def get_raw_data(self, name) -> list or None:
-        #return client data if address specified, else all clients in one server
         clients = self._get_clients()
         for client in clients:
             if client["name"] == name:
