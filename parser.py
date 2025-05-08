@@ -1,6 +1,6 @@
 import requests
 import json
-from .parsers import _fetch_master_data, _fetch_player_data, ServersParser, ClientsParser, PlayerStatsParser
+from .parsers import _fetch_master_data, _fetch_player_data, _fetch_map_data, ServersParser, ClientsParser, PlayerStatsParser, MapsParser
 
 class DDNetMasterParser:
     def __init__(self, address):
@@ -11,7 +11,12 @@ class DDNetMasterParser:
 class DDNetStatisticsParser:
     def __init__(self, name):
         self.response = _fetch_player_data(name)
-        self.stats = PlayerStatsParser(self.response)
+        self.stats = PlayerStatsParser(self.response, name)
+
+class DDNetMapsParser:
+    def __init__(self, _map):
+        self.response = _fetch_map_data(_map)
+        self.map = MapsParser(self.response, _map)
 
 def GetServers(address=None):
     master = DDNetMasterParser(address)
@@ -22,5 +27,10 @@ def GetClients(address=None):
     return master.clients
 
 def GetPlayerStats(name):
-    statistics = DDNetStatisticsParser(name)
-    return statistics.stats
+    player = DDNetStatisticsParser(name)
+    return player.stats
+
+def GetMap(_map):
+    maps = DDNetMapsParser(_map)
+    return maps.map
+
