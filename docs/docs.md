@@ -413,3 +413,111 @@ player = GetPlayerStats("nameless tee")
 print(player.get_recent_finishes())
 ```
 
+# Класс MapsParser
+
+Пример использования:
+```python
+from ddnet_parser import GetMap
+
+map = GetMap("Linear")
+print(map.get_mapper())
+```
+
+### Функции к объекту GetMap() класса MapsParser:
+## update()
+*   Описание: Обновляет данные, получая их из ddstats.tw
+*   Особенности: Данная функция применяется к объекту класса
+*   Аргументы: None
+*   Возвращает: None
+```python
+from ddnet_parser import GetPlayerStats
+import time
+
+map = GetMap("Linear")
+print(map.get_finishes())
+time.sleep(60)
+map.update()
+print(map.get_finishes())
+```
+## get_raw_data()
+
+*   Описание: Получает необработанные данные об игроке
+*   Аргументы: None
+*   Возвращает: dict: словарь с данными об игроке
+```python
+map = GetMap("Linear")
+print(player.get_raw_data())
+```
+
+## get_finishes()
+
+*   Описание: Получает количество финишей карты
+*   Аргументы: None
+*   Возвращает: int: число финишей карты
+```python
+map = GetMap("Linear")
+print(player.get_finishes())
+```
+## get_create_time()
+
+*   Описание: Получает дату релиза карты
+*   Аргументы: None
+*   Возвращает: str: дата релиза карты
+```python
+map = GetMap("Linear")
+print(player.get_create_time())
+```
+
+## get_type()
+
+*   Описание: Получает тип сервера — `Novice`, `Moderate`, `Brutal`, `Insane`...
+*   Аргументы: None
+*   Возвращает: str: тип сервера
+```python
+map = GetMap("Linear")
+print(player.get_type())
+```
+## get_points()
+
+*   Описание: Получает количество получаемых очков при прохождении карты
+*   Возвращает: int: количество очков
+```python
+map = GetMap("Linear")
+print(player.get_points())
+```
+## get_stars()
+
+*   Описание: Получает количество звезд карты
+*   Аргументы: None
+*   Возвращает: int: количество звезд
+```python
+map = GetMap("Linear")
+print(player.get_stars())
+```
+## get_mapper()
+
+*   Описание: Получает создателя карты
+*   Аргументы: None
+*   Возвращает: str: создатель карты
+```python
+map = GetMap("Linear")
+print(player.get_mapper())
+```
+## get_median_time()
+
+*   Описание: Получает среднее время рейса до финиша
+*   Аргументы: None
+*   Возвращает: int: среднее время финиша
+```python
+map = GetMap("Linear")
+print(player.get_median_time())
+```
+## get_playtime()
+
+*   Описание: Получает топ по наигранным секундам
+*   Аргументы: None
+*   Возвращает: list: список с топом наигранных секунд на карте
+```python
+map = GetMap("Linear")
+print(player.get_playtime())
+```
