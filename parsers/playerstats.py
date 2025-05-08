@@ -1,11 +1,12 @@
 from .utils import _fetch_player_data
 
 class PlayerStatsParser:
-    def __init__(self, response):
+    def __init__(self, response, name):
         self.response = response
+        self.name = name
 
     def update(self):
-        self.response = _fetch_player_data()
+        self.response = _fetch_player_data(self.name)
 
     def _get_activity(self):
         try:
