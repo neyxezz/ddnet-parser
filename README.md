@@ -20,6 +20,7 @@ sys.path.append("ВАША_ДИРЕКТОРИЯ_ГДЕ_НАХОДИТСЯ_ПАП�
 
 ## GetServers(address=None)
 *  Получает объект для парсинга информации о серверах
+*  Args: address(bool, optional): адрес сервера, для которого нужно получить информацию
 
 Пример:
 ```python
@@ -39,8 +40,9 @@ from ddnet_parser import GetClients
 clients = GetClients()
 print(clients.get_clients(count=True))
 ```
- ## GetPlayerStats(name)
+## GetPlayerStats(name)
 *  Получает объект для парсинга статистики игрока
+*  Args: name(str): ник, для которого нужно получить статистику
 
 Пример:
 ```python
@@ -48,6 +50,18 @@ from ddnet_parser import GetPlayerStats
 
 player = GetPlayerStats("neyxezz")
 print(player.get_total_seconds_played())
+```
+
+## GetMap(_map)
+* Получает объект для парсинга данных карты
+*  Args: address(str): карта, для которой нужно получить данные
+
+Пример:
+```python
+from ddnet_parser import GetMap
+
+map = GetMap("Linear")
+print(map.get_mapper())
 ```
 
 ## Подробная документация с примерами:
