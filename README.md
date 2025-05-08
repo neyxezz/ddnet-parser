@@ -20,6 +20,7 @@ sys.path.append("ВАША_ДИРЕКТОРИЯ_ГДЕ_НАХОДИТСЯ_ПАП�
 
 ## GetServers(address=None)
 *  Получает объект для парсинга информации о серверах
+*  Документация: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-serversparser)
 *  Args: address(bool, optional): адрес сервера, для которого нужно получить информацию
 
 Пример:
@@ -31,6 +32,7 @@ print(servers.get_count())
 ```
 ## GetClients(address=None)
 *  Получает объект для парсинга информации о клиентах
+*  Документация: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-clientsparser)
 *  Args: address(bool, optional): адрес сервера, для которого нужно получить информацию о клиентах
 
 Пример:
@@ -42,6 +44,7 @@ print(clients.get_clients(count=True))
 ```
 ## GetPlayerStats(name)
 *  Получает объект для парсинга статистики игрока
+*  Документация: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-playerstatsparser)
 *  Args: name(str): ник, для которого нужно получить статистику
 
 Пример:
@@ -54,6 +57,7 @@ print(player.get_total_seconds_played())
 
 ## GetMap(_map)
 * Получает объект для парсинга данных карты
+*  Документация: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-mapsparser)
 *  Args: address(str): карта, для которой нужно получить данные
 
 Пример:
