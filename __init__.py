@@ -1,1 +1,1 @@
-from .parser import GetServers, GetClients, GetPlayerStats, GetMap
+from .parser import GetServers, GetClients, GetPlayerStats, GetMap, GetProfile

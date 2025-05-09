@@ -10,12 +10,11 @@ online_players_list = clients.get_clients()
 online_players_count = clients.get_clients(count=True)
 print(onlint_players_count)
 ```
-### Функции к объекту GetClients() класса ClientsParser:
-## update()
-*   Описание: Обновляет данные, получая их из master1.ddnet.org
-*   Особенности: Данная функция применяется к объекту класса
-*   Аргументы: None
-*   Возвращает: None
+
+## Обновление данных с помощью update()
+Для каждого объекта класса можно использовать функцию `update()`, которая обновляет данные
+
+Пример:
 ```python
 from ddnet_parser import GetClients
 import time
@@ -26,6 +25,8 @@ time.sleep(10)
 clients.update()
 print(clients.get_clients(count=True))
 ```
+
+### Функции к объекту GetClients() класса ClientsParser:
 ## get_raw_data(name)
 
 *   Описание: Получает необработанные данные клиента по его имени
@@ -158,21 +159,6 @@ server_name = servers.get_name()
 print(server_name)
 ```
 ### Функции к объекту GetServers() класса ServersParser:
-## update()
-*   Описание: Обновляет данные, получая их из master1.ddnet.org
-*   Особенности: Данная функция применяется к объекту класса
-*   Аргументы: None
-*   Возвращает: None
-```python
-from ddnet_parser import GetServers
-import time
-
-servers = GetServers()
-print(servers.get_count())
-time.sleep(10)
-servers.update()
-print(servers.get_count())
-```
 ## get_raw_data()
 
 *   Описание: Получает необработанные данные сервера или всех серверов
@@ -307,21 +293,6 @@ print(total_seconds)
 ```
 Важное замечание: не всегда вся статистика отслеживается сайтом ddstats.tw, особенно если у вас очень много данных. Так, например, для ника **nameless tee** в функциях `get_total_seconds_played`, `get_start_of_playtime`, `get_average_seconds_played`, `get_playtime` возвращается None или пустой список, всегда учитывайте это.
 ### Функции к объекту GetPlayerStats() класса PlayerStatsParser:
-## update()
-*   Описание: Обновляет данные, получая их из ddstats.tw
-*   Особенности: Данная функция применяется к объекту класса
-*   Аргументы: None
-*   Возвращает: None
-```python
-from ddnet_parser import GetPlayerStats
-import time
-
-player = GetPlayerStats("nameless tee")
-print(player_stats.get_total_seconds_played())
-time.sleep(60)
-player.update()
-print(player.get_total_seconds_played())
-```
 ## get_raw_data()
 
 *   Описание: Получает необработанные данные об игроке
@@ -424,21 +395,6 @@ print(map.get_mapper())
 ```
 
 ### Функции к объекту GetMap() класса MapsParser:
-## update()
-*   Описание: Обновляет данные, получая их из ddstats.tw
-*   Особенности: Данная функция применяется к объекту класса
-*   Аргументы: None
-*   Возвращает: None
-```python
-from ddnet_parser import GetPlayerStats
-import time
-
-map = GetMap("Linear")
-print(map.get_finishes())
-time.sleep(60)
-map.update()
-print(map.get_finishes())
-```
 ## get_raw_data()
 
 *   Описание: Получает необработанные данные об игроке
@@ -520,4 +476,61 @@ print(player.get_median_time())
 ```python
 map = GetMap("Linear")
 print(player.get_playtime())
+```
+
+### Функции к объекту GetProfile() класса ProfileParser:
+## get_raw_data()
+
+*   Описание: Получает необработанные данные о профиле игрока
+*   Аргументы: None
+*   Возвращает: dict: словарь с профилем игрока
+```python
+profile = GetProfile("neyxezz")
+print(profile.get_points())
+```
+
+## get_points()
+
+*   Описание: Получает общее количество очков
+*   Аргументы: None
+*   Возвращает: int: количество очков
+```python
+profile = GetProfile("neyxezz")
+print(profile.get_points())
+```
+## get_country()
+
+*   Описание: Получает код страны
+*   Аргументы: None
+*   Возвращает: int: код страны
+```python
+profile = GetProfile("neyxezz")
+print(profile.get_points())
+```
+## get_skin_name()
+
+*   Описание: Получает название скина
+*   Аргументы: None
+*   Возвращает: str: название скина
+```python
+profile = GetProfile("neyxezz")
+print(profile.get_points())
+```
+## get_skin_color_body()
+
+*   Описание: Получает код цвета тела в десятичном представлении
+*   Аргументы: None
+*   Возвращает: int: код цвета
+```python
+profile = GetProfile("neyxezz")
+print(profile.get_skin_color_body())
+```
+## get_skin_color_feet()
+
+*   Описание: Получает код цвета ног в десятичном представлении
+*   Аргументы: None
+*   Возвращает: int: код цвета
+```python
+profile = GetProfile("neyxezz")
+print(profile.get_skin_color_feet())
 ```
