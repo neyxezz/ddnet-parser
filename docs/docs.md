@@ -478,6 +478,16 @@ map = GetMap("Linear")
 print(player.get_playtime())
 ```
 
+# Класс ProfileParser
+
+Пример использования:
+```python
+from ddnet_parser import GetProfile
+
+profile = GetProfile("neyxezz")
+print(profile.get_skin_color_body())
+```
+
 ### Функции к объекту GetProfile() класса ProfileParser:
 ## get_raw_data()
 
