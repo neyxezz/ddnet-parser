@@ -2,14 +2,17 @@
 
 Данный парсер упрощает получение данных с [мастера серверов дднета](https://master1.ddnet.org/ddnet/15/servers.json) и различную статистику с [ddstats.tw](https://ddstats.tw/)
 
-## Установка библиотек:
+## Установка:
+Установка библиотеки:
 ```
 pip install requests
 ```
-## Установка стабильной версии парсера:
+Установка последней стабильной версии парсера:
 ```
 pip install ddnet-parser
 ```
+Установка последней нестабильной тестовой версии парсера:
+pip install git+https://github.com/neyxezz/ddnet-parser@tests
 
 ## GetClients(address=None)
 *  Получает объект для парсинга информации о клиентах
