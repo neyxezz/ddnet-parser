@@ -12,7 +12,9 @@ pip install requests
 pip install ddnet-parser
 ```
 Установка последней нестабильной тестовой версии парсера:
+```
 pip install git+https://github.com/neyxezz/ddnet-parser@tests
+```
 
 ## GetClients(address=None)
 *  Получает объект для парсинга информации о клиентах
