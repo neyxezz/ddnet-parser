@@ -1,3 +1,10 @@
+## Навигация:
+- [GetClients](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-clientsparser)
+- [GetServers](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-serversparser)
+- [GetPlayerStats](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-playerstatsparser)
+- [GetMap](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-mapsparser)
+- [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-profileparser)
+
 # Класс ClientsParser
 
 Пример использования:
