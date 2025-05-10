@@ -1,5 +1,3 @@
-import requests
-import json
 from .parsers import _fetch_master_data, _fetch_player_data, _fetch_map_data, _fetch_profile_data, ServersParser, ClientsParser, PlayerStatsParser, MapsParser, ProfileParser
 
 class DDNetMasterParser:

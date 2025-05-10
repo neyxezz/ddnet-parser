@@ -25,7 +25,7 @@ class ServersParser:
     def get_count(self) -> int:
         return len(self.response["servers"])
 
-    def get_passworded_servers(self, count=False) -> int:
+    def get_passworded_servers(self, count=False) -> list or int:
         passworded_servers = []
         for server in self.response["servers"]:
             if server["info"]["passworded"]:
@@ -52,7 +52,7 @@ class ServersParser:
             return server["info"]["max_players"]
         return None
 
-    def get_game_type(self, address) -> str or None:
+    def get_game_type(self) -> str or None:
         server = self._get_server_by_address()
         if server:
             return server["info"]["game_type"]
@@ -87,3 +87,15 @@ class ServersParser:
         if server:
             return server["info"]["passworded"]
         return None
+
+    def get_server_by_client_name(self, name, all_servers=False):
+        #не протестирована до конца
+        servers = []
+        for server in self.response["servers"]:
+            for client in server["info"]["clients"]:
+                if client["name"] == name:
+                    if not all_servers:
+                        return server
+                    servers.append(server)
+                    break #чтобы не перебирать больше клиентов
+        return servers if servers else None

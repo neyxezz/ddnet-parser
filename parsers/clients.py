@@ -74,11 +74,11 @@ class ClientsParser:
         return players_afk_list
 
     def get_afk_bots(self, count=False) -> list or int:
-        bots_afk_list = 0
+        bots_afk_list = []
         clients = self._get_clients()
         for client in clients:
             if client.get("afk", False) and not client["is_player"]:
-                bots_afk_count.append(client)
+                bots_afk_list.append(client)
         if count:
             return len(bots_afk_list)
         return bots_afk_list
@@ -117,3 +117,12 @@ class ClientsParser:
             if client["name"] == name and not client["is_player"]:
                 return True
         return False
+
+    def get_clients_with_same_clan(self, clan, count=False) -> list or int:
+        #не проверена работоспособность
+        clients = self._get_clients()
+        clients_with_same_clan = []
+        for client in clients:
+            if client["clan"] == clan:
+                clients_with_same_clan.append(client)
+        return clients_with_same_clan if not count else len(clients_with_same_clan)

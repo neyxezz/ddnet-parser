@@ -1,4 +1,4 @@
-from .utils import _fetch_player_data
+from .utils import _fetch_map_data
 
 class MapsParser:
     def __init__(self, response, _map):
@@ -21,7 +21,7 @@ class MapsParser:
     def get_create_time(self) -> str:
         info = self._get_info()
         return " ".join(info["map"]["timestamp"].split("T"))
- 
+
     def get_type(self) -> str:
         info = self._get_info()
         return info["map"]["server"]
