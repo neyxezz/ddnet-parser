@@ -11,7 +11,7 @@ pip install requests
 ```
 pip install ddnet-parser
 ```
-Установка последней нестабильной тестовой версии парсера:
+Установка тестовой и нестабильной версии парсера:
 ```
 pip install git+https://github.com/neyxezz/ddnet-parser@tests
 ```
