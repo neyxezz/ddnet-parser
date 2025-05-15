@@ -5,19 +5,6 @@
 - [GetMap](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-mapsparser)
 - [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-profileparser)
 
-# Класс ClientsParser
-
-Пример использования:
-```python
-from ddnet_parser import GetClients
-
-clients = GetClients()
-
-online_players_list = clients.get_clients()
-online_players_count = clients.get_clients(count=True)
-print(onlint_players_count)
-```
-
 ## Обновление данных с помощью update()
 Для каждого объекта класса можно использовать функцию `update()`, которая обновляет данные
 
@@ -33,6 +20,14 @@ clients.update()
 print(clients.get_clients(count=True))
 ```
 
+# Класс ClientsParser
+Пример использования:
+```python
+from ddnet_parser import GetClients
+
+clients = GetClients()
+print(clients.get_clients(count=True))
+```
 ### Функции к объекту GetClients() класса ClientsParser:
 ## get_raw_data(name)
 
@@ -45,67 +40,36 @@ print(clients.get_clients(count=True))
 clients = GetClients("ip:port")
 print(clients.get_raw_data("nameless tee"))
 ```
-## get_clients(count=False)
+## get_clients(count=False, types="client")
 
-*   Описание: Получает список всех клиентов.
-*   Особенности: Если адрес дан, возвращает все клиенты сервера, иначе все клиенты всех серверов
+*   Описание: Получает список всех клиентов по заданному типу.
+*   Особенности: Если адрес дан в функции GetClients, возвращает все клиенты сервера, иначе все клиенты всех серверов. Основные типы клиентов для переменной types:
+    - client (все клиенты);
+    - player (обычные игроки);
+    - spectators (наблюдатели)
+Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
 *   Аргументы:
     *   count (bool, optional): Если True, возвращает количество клиентов. По умолчанию False
+    *   types (str, optional): Тип клиента
 *   Возвращает: list или int: список словарей с информацией о клиентах или количество клиентов, если count=True
 ```python
 clients = GetClients("ip:port")
-print(clients.get_clients())
+print(clients.get_clients(types="spectator"))
 ```
-## get_players(count=False)
-
-*   Описание: Получает список всех игроков (клиентов, помеченных как игроки в мастере)
-*   Аргументы:
-    *   count (bool, optional): Если True, возвращает количество игроков. По умолчанию False
-*   Возвращает: list или int: список словарей с информацией об игроках или количество игроков, если count=True
-```python
-clients = GetClients("ip:port")
-print(clients.get_players())
-```
-## get_bots(count=False)
-
-*   Описание: Получает список всех ботов (клиентов, не помеченных как игроки)
-*   Аргументы:
-    *   count (bool, optional): Если True, возвращает количество ботов. По умолчанию False
-*   Возвращает: list или int: список словарей с информацией о ботах или количество ботов, если count=True
-*   Замечание: Я точно не знаю, боты это или нет, но в мастере серверов они помечаются как `is_player: False`
-```python
-clients = GetClients("ip:port")
-print(clients.get_bots())
-```
-## get_afk_clients(count=False)
+## get_afk_clients(count=False, types="client")
 
 *   Описание: Получает список всех AFK клиентов
+*   Особенности: Если адрес дан в функции GetClients, возвращает все клиенты сервера, иначе все клиенты всех серверов. Основные типы клиентов для переменной types:
+    - client (все клиенты);
+    - player (обычные игроки);
+    - spectators (наблюдатели)
+Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
 *   Аргументы:
     *   count (bool, optional): Если True, возвращает количество AFK клиентов. По умолчанию False
 *   Возвращает: list или int: список словарей с информацией об AFK клиентах или количество AFK клиентов, если count=True
 ```python
 clients = GetClients("ip:port")
-print(clients.get_afk_clients())
-```
-## get_afk_players(count=False)
-
-*   Описание: Получает список всех AFK игроков.
-*   Аргументы:
-    *   count (bool, optional): Если True, возвращает количество AFK игроков. По умолчанию False
-*   Возвращает: list или int: список словарей с информацией об AFK игроках или количество AFK игроков, если count=True
-```python
-clients = GetClients("ip:port")
-print(clients.get_afk_players())
-```
-## get_afk_bots(count=False)
-
-*   Описание: Получает список всех AFK ботов
-*   Аргументы:
-    *   count (bool, optional): Если True, возвращает количество AFK ботов. По умолчанию False
-*   Возвращает: list или int: список словарей с информацией об AFK ботах или количество AFK ботов, если count=True
-```python
-clients = GetClients("ip:port")
-print(clients.get_afk_bots())
+print(clients.get_afk_clients(types="spectator"))
 ```
 ## get_clan(name)
 
@@ -125,34 +89,45 @@ print(clients.get_clan("nameless tee"))
 *   Возвращает: str или None: название команды клиента, если клиент найден, иначе None
 ```python
 clients = GetClients("ip:port")
-print(clients.get_team("nameless tee))
+print(clients.get_team("nameless tee"))
 ```
-## is_client_online(name)
+## get_score(name)
+
+*   Описание: Получает очки клиента по его имени
+*   Аргументы:
+    *   name (str): Имя клиента
+*   Возвращает: str или None: название команды клиента, если клиент найден, иначе None
+```python
+clients = GetClients("ip:port")
+print(clients.get_team("nameless tee"))
+```
+## is_online(name, types="client")
 
 *   Описание: Проверяет, находится ли клиент онлайн по его имени
+*   Особенности: Если адрес дан в функции GetClients, возвращает все клиенты сервера, иначе все клиенты всех серверов. Основные типы клиентов для переменной types:
+    - client (все клиенты);
+    - player (обычные игроки);
+    - spectators (наблюдатели)
+Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
 *   Аргументы:
     *   name (str): Имя клиента
 *   Возвращает: bool: True, если клиент онлайн, иначе False
 ```python
 clients = GetClients("ip:port")
-print(clients.is_client_online("nameless tee"))
+print(clients.is_online("nameless tee", types="spectator"))
 ```
-## is_player_online(name)
+## get_clients_with_same_clan(clan)
 
-*   Описание: Проверяет, находится ли игрок онлайн по его имени
-*   Аргументы: str: ник игрока
+*   Описание: Получает список клиентов с заданным кланом
+*   Аргументы: str: клан
 
 Пример использования:
 ```python
 from ddnet_parser import GetClients
 
 clients = GetClients()
-
-online_players_list = clients.get_clients()
-online_players_count = clients.get_clients(count=True)
-print(onlint_players_count)
+print(clients.get_clients_with_same_clan("clan"))
 ```
-
 
 # Класс ServersParser
 
@@ -187,13 +162,22 @@ print(servers.get_count())
 ```
 ## get_passworded_servers(count=False)
 
-*   Описание: Получает список серверов с паролем если count верно, иначе их количество
+*   Описание: Получает список серверов требующие пароль
 *   Аргументы: count (bool, optional): Если True, возвращает количество серверов с паролем. По умолчанию False
 *   Возвращает: list или int: список словарей с данными о серверах с паролем или их количество, если count=True
 ```python
 servers = GetServers()
 print(servers.get_passworded_servers())
 print(servers.get_passworded_servers(count=True))
+```
+## get_require_login_servers(count=False)
+
+*   Описание: Получает список серверов требующих логин
+*   Аргументы: count (bool, optional): Если True, возвращает количество серверов с паролем. По умолчанию False
+*   Возвращает: list или int: список словарей с данными о серверах с паролем или их количество, если count=True
+```python
+servers = GetServers()
+print(servers.get_require_login_servers())
 ```
 ## get_location()
 
@@ -245,15 +229,35 @@ print(servers.get_game_type())
 servers = GetServers()
 print(servers.get_name())
 ```
-## get_map()
+## get_map_name()
 
-*   Описание: Получает название карты на сервере
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetPlayerStats
+*   Описание: Получает название карты
+*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
 *   Аргументы: None
 *   Возвращает: str: название карты
 ```python
 servers = GetServers()
-print(servers.get_map())
+print(servers.get_map_name())
+```
+## get_map_hash()
+
+*   Описание: Получает SHA256 карты
+*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
+*   Аргументы: None
+*   Возвращает: str: SHA256
+```python
+servers = GetServers()
+print(servers.get_map_hash())
+```
+## get_map_size()
+
+*   Описание: Получает размер карты в байтах
+*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
+*   Аргументы: None
+*   Возвращает: str: размер карты
+```python
+servers = GetServers()
+print(servers.get_map_size())
 ```
 ## get_version()
 
@@ -285,7 +289,24 @@ print(servers.is_require_login())
 servers = GetServers()
 print(servers.is_passworded())
 ```
+## get_server_by_client_name(name, all_servers=False)
 
+*   Описание: Получает сервер по нику клиента
+*   Аргументы: name (str): Ник клиента; all_servers (bool, optional): Если True, берутся все сервера с заданным ником клиента, иначе первое вхождение
+*   Возвращает: list: сервер/серверы
+```python
+server = GetServers()
+print(server.get_server_by_client_name("nameless tee", all_servers=True))
+```
+## get_servers_by_game_type(game_type)
+
+*   Описание: Получает сервера с заданным типом игры
+*   Аргументы: game_type (str): Тип игры
+*   Возвращает: list: сервер/серверы
+```python
+server = GetServers()
+print(server.get_servers_by_game_type("DDRaceNetwork"))
+```
 
 # Класс PlayerStatsParser
 
@@ -411,7 +432,6 @@ print(map.get_mapper())
 map = GetMap("Linear")
 print(player.get_raw_data())
 ```
-
 ## get_finishes()
 
 *   Описание: Получает количество финишей карты
@@ -430,7 +450,6 @@ print(player.get_finishes())
 map = GetMap("Linear")
 print(player.get_create_time())
 ```
-
 ## get_type()
 
 *   Описание: Получает тип сервера — `Novice`, `Moderate`, `Brutal`, `Insane`...
@@ -503,9 +522,8 @@ print(profile.get_skin_color_body())
 *   Возвращает: dict: словарь с профилем игрока
 ```python
 profile = GetProfile("neyxezz")
-print(profile.get_points())
+print(profile.get_raw_data())
 ```
-
 ## get_points()
 
 *   Описание: Получает общее количество очков
@@ -522,7 +540,7 @@ print(profile.get_points())
 *   Возвращает: int: код страны
 ```python
 profile = GetProfile("neyxezz")
-print(profile.get_points())
+print(profile.get_country())
 ```
 ## get_skin_name()
 
@@ -531,7 +549,7 @@ print(profile.get_points())
 *   Возвращает: str: название скина
 ```python
 profile = GetProfile("neyxezz")
-print(profile.get_points())
+print(profile.get_skin_name())
 ```
 ## get_skin_color_body()
 
