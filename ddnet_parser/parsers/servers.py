@@ -120,9 +120,11 @@ class ServersParser:
                     break
         return servers if servers else None
 
-    def get_servers_by_game_type(self, game_type: str) -> list:
+    def get_servers_by_game_type(self, game_type: str, count: bool = False) -> list:
         servers = []
         for server in self.response["servers"]:
             if server["info"]["game_type"] == game_type:
                 servers.append(server)
-        return servers if servers else None
+        if servers:
+            return len(servers) if count else servers
+        return None
