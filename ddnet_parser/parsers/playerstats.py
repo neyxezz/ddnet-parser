@@ -8,6 +8,30 @@ class PlayerStatsParser:
     def update(self):
         self.response = _fetch_player_data(self.name)
 
+    def _get_raw_points(self) -> list:
+        return self.response["points"]
+
+    def _get_most_played_maps(self) -> list:
+        return self.response["recent_activity"]
+
+    def _get_recent_player_info(self) -> list:
+        return self.response["recent_player_info"]
+
+    def _get_completion_progress(self) -> list:
+        return self.response["completion_progress"]
+
+    def _get_recent_player_info(self) -> list:
+        return self.response["recent_activity"]
+
+    def _get_recent_player_info(self) -> list:
+        return self.response["recent_activity"]
+
+    def _get_recent_player_info(self) -> list:
+        return self.response["recent_activity"]
+
+    def _get_recent_player_info(self) -> list:
+        return self.response["recent_activity"]
+
     def _get_activity(self) -> dict:
         try:
             return self.response["general_activity"]
@@ -52,6 +76,9 @@ class PlayerStatsParser:
 
     def get_raw_data(self) -> dict:
         return self.response
+
+    def get_raw_recent_activity_data(self) -> list:
+        return self.response["recent_activity"]
 
     def get_total_seconds_played(self) -> int:
         general_activity = self._get_activity()

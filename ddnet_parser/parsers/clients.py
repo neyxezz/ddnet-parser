@@ -17,112 +17,94 @@ class ClientsParser:
                     clients.append(client)
         return clients
 
-    def get_raw_data(self, name) -> list or None:
+    def get_raw_data(self, name: str = None) -> list or None:
         clients = self._get_clients()
-        for client in clients:
-            if client["name"] == name:
-                return client
-        return None
+        if name:
+            for client in clients:
+                if client["name"] == name:
+                    return client
+            return None
+        return clients
 
-    def get_clients(self, count=False) -> list or int:
+    def get_clients(self, count: bool = False, types: str = "client") -> list or int:
         clients_list = []
         clients = self._get_clients()
         for client in clients:
-            clients_list.append(client)
+            if types=="client":
+                is_include = True
+            elif types=="player":
+                is_include = client["is_player"]
+            elif types=="spectator":
+                is_include = not client["is_player"]
+            else:
+                raise ValueError("Unknown type '{}'. There are: client, player, spectator".format(types))
+            if is_include:
+                clients_list.append(client)
         if count:
-            return len(clients_list)
-        return clients_list
+            return len(clients_list) if len(clients_list) != 0 else None
+        return clients_list if clients_list else None
 
-    def get_players(self, count=False) -> list or int:
-        players_list = []
-        clients = self._get_clients()
-        for client in clients:
-            if client["is_player"]:
-                players_list.append(client)
-        if count:
-            return len(players_list)
-        return players_list
-
-    def get_bots(self, count=False) -> list or int:
-        bots_list = []
-        clients = self._get_clients()
-        for client in clients:
-            if not client["is_player"]:
-                bots_list.append(client)
-        if count:
-            return len(bots_list)
-        return bots_list
-
-    def get_afk_clients(self, count=False) -> list or int:
+    def get_afk_clients(self, count: bool = False, types: str = "client") -> list or int:
         clients_afk_list = []
         clients = self._get_clients()
         for client in clients:
-            if client.get("afk", False):
+            if types=="client":
+                is_include = True #все клиенты
+            elif types=="player":
+                is_include = client["is_player"]
+            elif types=="spectator":
+                is_include = not client["is_player"]
+            else:
+                raise ValueError("Unknown type '{}'. There are: client, player, spectator".format(types))
+            if client["afk"] and is_include:
                 clients_afk_list.append(client)
         if count:
-            return len(clients_afk_list)
-        return clients_afk_list
+            return len(clients_afk_list) if len(clients_afk_list) != 0 else None
+        return clients_afk_list if clients_afk_list else None
 
-    def get_afk_players(self, count=False) -> list or int:
-        players_afk_list = []
-        clients = self._get_clients()
-        for client in clients:
-            if client.get("afk", False) and client["is_player"]:
-                players_afk_list.append(client)
-        if count:
-            return len(players_afk_list)
-        return players_afk_list
-
-    def get_afk_bots(self, count=False) -> list or int:
-        bots_afk_list = []
-        clients = self._get_clients()
-        for client in clients:
-            if client.get("afk", False) and not client["is_player"]:
-                bots_afk_list.append(client)
-        if count:
-            return len(bots_afk_list)
-        return bots_afk_list
-
-    def get_clan(self, name) -> str or None:
+    def get_clan(self, name: str) -> str or None:
         clients = self._get_clients()
         for client in clients:
             if client["name"] == name:
                 return client.get("clan")
         return None
 
-    def get_team(self, name) -> str or None:
+    def get_team(self, name: str) -> str or None:
         clients = self._get_clients()
         for client in clients:
             if client["name"] == name:
-                return client.get("team")
+                return client["team"]
         return None
 
-    def is_client_online(self, name) -> bool:
+    def get_score(self, name: str) -> str or None:
         clients = self._get_clients()
         for client in clients:
             if client["name"] == name:
-                return True
-        return False
+                return client["score"]
+        return None
 
-    def is_player_online(self, name) -> bool:
+    def is_online(self, name: str, types: str = "client") -> bool:
         clients = self._get_clients()
         for client in clients:
-            if client["name"] == name and client["is_player"]:
+            if types=="client":
+                is_include = True #все клиенты
+            elif types=="player":
+                is_include = client["is_player"]
+            elif types=="spectator":
+                is_include = not client["is_player"]
+            else:
+                raise ValueError("Unknown type '{}'. There are: client, player, bot".format(types))
+            if client["name"] == name and is_include:
                 return True
         return False
 
-    def is_bot_online(self, name) -> bool:
-        clients = self._get_clients()
-        for client in clients:
-            if client["name"] == name and not client["is_player"]:
-                return True
-        return False
-
-    def get_clients_with_same_clan(self, clan, count=False) -> list or int:
-        #не проверена работоспособность
+    def get_clients_with_same_clan(self, clan: str, count: bool = False) -> list or int or None:
         clients = self._get_clients()
         clients_with_same_clan = []
         for client in clients:
             if client["clan"] == clan:
                 clients_with_same_clan.append(client)
-        return clients_with_same_clan if not count else len(clients_with_same_clan)
+        if count:
+            return len(clients_with_same_clan) if clients_with_same_clan else None
+        return clients_with_same_clan if clients_with_same_clan else None
+
