@@ -330,6 +330,15 @@ print(total_seconds)
 player = GetPlayerStats("nameless tee")
 print(player.get_raw_data())
 ```
+## get_raw_recent_activity_data()
+
+*   Описание: Получает необработанные данные об активности игрока
+*   Аргументы: None
+*   Возвращает: list: список с серверами
+```python
+player = GetPlayerStats("neyxezz")
+print(player.get_raw_recent_activity_data())
+```
 ## get_total_seconds_played()
 
 *   Описание: Получает общее количество секунд, проведенных в игре
