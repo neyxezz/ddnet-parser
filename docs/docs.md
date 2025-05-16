@@ -1,14 +1,14 @@
-## Навигация:
+## Navigation:
 - [GetClients](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-clientsparser)
 - [GetServers](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-serversparser)
 - [GetPlayerStats](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-playerstatsparser)
 - [GetMap](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-mapsparser)
 - [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-profileparser)
 
-## Обновление данных с помощью update()
-Для каждого объекта класса можно использовать функцию `update()`, которая обновляет данные
+## Updating data with update()
+For each class object, you can use the `update()` function to update the data
 
-Пример:
+Example:
 ```python
 from ddnet_parser import GetClients
 import time
@@ -17,302 +17,296 @@ clients = GetClients()
 print(clients.get_clients(count=True))
 time.sleep(10)
 clients.update()
-print(clients.get_clients(count=True))
+print(clients.get_clients(count=True)))
 ```
 
-# Класс ClientsParser
-Пример использования:
+# ClientsParser class
+Example usage:
 ```python
 from ddnet_parser import GetClients
 
 clients = GetClients()
 print(clients.get_clients(count=True))
 ```
-### Функции к объекту GetClients() класса ClientsParser:
-## get_raw_data(name)
+### Functions to the GetClients() object of the ClientsParser class:
+## get_raw_data(name).
 
-*   Описание: Получает необработанные данные клиента по его имени
-*   Аргументы:
-    *   name (str): Имя клиента
-*   Особенности: Если адрес дан, возвращается клиент конкретно в этом адресе, в противном случае, первое вхождение
-*   Возвращает: dict или None: словарь с данными клиента, если клиент найден, иначе None
+* Description: Gets the raw data of a client by its name
+* Arguments:
+    * name (str): The client's name
+* Features: If an address is given, returns the client specifically at that address, otherwise, the first occurrence.
+* Returns: dict or None: dictionary with client data if client is found, otherwise None
 ```python
 clients = GetClients("ip:port")
 print(clients.get_raw_data("nameless tee"))
 ```
 ## get_clients(count=False, types="client")
 
-*   Описание: Получает список всех клиентов по заданному типу.
-*   Особенности: Если адрес дан в функции GetClients, возвращает все клиенты сервера, иначе все клиенты всех серверов. Основные типы клиентов для переменной types:
-    - client (все клиенты);
-    - player (обычные игроки);
-    - spectator (наблюдатели)
-Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
-*   Аргументы:
-    *   count (bool, optional): Если True, возвращает количество клиентов. По умолчанию False
-    *   types (str, optional): Тип клиента
-*   Возвращает: list или int: список словарей с информацией о клиентах или количество клиентов, если count=True
+* Description: Gets a list of all clients by the given type.
+* Features: If the address is given in the GetClients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
+    - client (all clients);
+    - player (regular players);
+    - spectator (spectators)
+Note that connecting clients are also spectators and are marked with the nickname `(connecting)`.
+* Arguments:
+    * count (bool, optional): If True, returns the number of clients. Defaults to False
+    * types (str, optional): Client type.
+* Returns: list or int: list of dictionaries with client information or number of clients if count=True
 ```python
 clients = GetClients("ip:port")
 print(clients.get_clients(types="spectator"))
 ```
 ## get_afk_clients(count=False, types="client")
 
-*   Описание: Получает список всех AFK клиентов
-*   Особенности: Если адрес дан в функции GetClients, возвращает все клиенты сервера, иначе все клиенты всех серверов. Основные типы клиентов для переменной types:
-    - client (все клиенты);
-    - player (обычные игроки);
-    - spectator (наблюдатели)
-Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
-*   Аргументы:
-    *   count (bool, optional): Если True, возвращает количество AFK клиентов. По умолчанию False
-    *   types (str, optional): Тип клиента
-*   Возвращает: list или int: список словарей с информацией об AFK клиентах или количество AFK клиентов, если count=True
+* Description: Gets a list of all AFK clients
+* Features: If the address is given in the GetClients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
+    - client (all clients);
+    - player (regular players);
+    - spectator (spectators)
+Note that connecting clients are also spectators and are marked with the nickname `(connecting)`.
+* Arguments:
+    * count (bool, optional): If True, returns the number of AFK clients. Defaults to False
+    * types (str, optional): Client type.
+* Returns: list or int: list of dictionaries with AFK client information or number of AFK clients if count=True
 ```python
 clients = GetClients("ip:port")
 print(clients.get_afk_clients(types="spectator"))
 ```
 ## get_clan(name)
 
-*   Описание: Получает клан клиента по его имени
-*   Аргументы:
-    *   name (str): Имя клиента
-*   Возвращает: str или None: название клана клиента, если клиент найден, иначе None
+* Description: Gets the client's clan by name
+* Arguments:
+    * name (str): Client's name
+* Returns: str or None: client clan name if client is found, otherwise None
 ```python
 clients = GetClients("ip:port")
 print(clients.get_clan("nameless tee"))
 ```
 ## get_team(name)
 
-*   Описание: Получает команду клиента по его имени
-*   Аргументы:
-    *   name (str): Имя клиента
-*   Возвращает: str или None: название команды клиента, если клиент найден, иначе None
+* Description: Gets the client's team by name
+* Arguments:
+    * name (str): The client's name
+* Returns: str or None: client team if client is found, otherwise None
 ```python
 clients = GetClients("ip:port")
 print(clients.get_team("nameless tee"))
 ```
 ## get_score(name)
 
-*   Описание: Получает очки клиента по его имени
-*   Аргументы:
-    *   name (str): Имя клиента
-*   Возвращает: str или None: название команды клиента, если клиент найден, иначе None
+* Description: Gets the client's scores by name
+* Arguments:
+    * name (str): The client's name
+* Returns: str or None: client's team name if client is found, otherwise None
 ```python
 clients = GetClients("ip:port")
 print(clients.get_team("nameless tee"))
 ```
 ## is_online(name, types="client")
 
-*   Описание: Проверяет, находится ли клиент онлайн по его имени
-*   Особенности: Если адрес дан в функции GetClients, возвращает все клиенты сервера, иначе все клиенты всех серверов. Основные типы клиентов для переменной types:
-    - client (все клиенты);
-    - player (обычные игроки);
-    - spectator (наблюдатели)
-Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
-*   Аргументы:
-    *   name (str): Имя клиента
-    *   types (str, optional): Тип клиента
-*   Возвращает: bool: True, если клиент онлайн, иначе False
+* Description: Checks if the client is online by name
+* Features: If the address is given in the GetClients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
+    - client (all clients);
+    - player (regular players);
+    - spectator (spectators)
+Note that connecting clients are also spectators and are marked with the nickname `(connecting)`.
+* Arguments:
+    * name (str): Client name
+    * types (str, optional): Client type
+* Returns: bool: True if client is online, otherwise False
 ```python
 clients = GetClients("ip:port")
-print(clients.is_online("nameless tee", types="spectator"))
+print(clients.is_online("nameless tee", types="spectator")))
 ```
 ## get_clients_with_same_clan(clan)
 
-*   Описание: Получает список клиентов с заданным кланом
-*   Аргументы: str: клан
-
-Пример использования:
+* Description: Gets a list of clients with the given clan
+* Arguments: str: clan
 ```python
 from ddnet_parser import GetClients
 
 clients = GetClients()
 print(clients.get_clients_with_same_clan("clan"))
 ```
+# ServersParser class
 
-# Класс ServersParser
-
-Пример использования:
+Example usage:
 ```python
 from ddnet_parser import GetServers
 
-servers = GetServers("ip:port")
-
-server_name = servers.get_name()
-print(server_name)
+server = GetServers("ip:port")
+print(server.get_name())
 ```
-### Функции к объекту GetServers() класса ServersParser:
+### Functions to the GetServers() object of the ServersParser class:
 ## get_raw_data()
 
-*   Описание: Получает необработанные данные сервера или всех серверов
-*   Особенности: Если адрес дан, возвращает данные по этому адресу, иначе данные всех серверов
-*   Аргументы: None
-*   Возвращает: dict или list: словарь с данными сервера, если указан адрес, иначе список словарей со всеми серверами
+* Description: Gets the raw data of a server or all servers
+* Features: If an address is given, returns data at that address, otherwise returns data from all servers
+* Arguments: None
+* Returns: dict or list: dictionary with server data if address is given, otherwise dictionary list with all servers
 ```python
 servers = GetServers()
 print(servers.get_raw_data())
 ```
 ## get_count()
 
-*   Описание: Получает общее количество серверов.
-*   Аргументы: None
-*   Возвращает: int: общее количество серверов.
+* Description: Gets the total number of servers.
+* Arguments: None
+* Returns: int: total number of servers.
 ```python
 servers = GetServers()
 print(servers.get_count())
 ```
 ## get_passworded_servers(count=False)
 
-*   Описание: Получает список серверов требующие пароль
-*   Аргументы: count (bool, optional): Если True, возвращает количество серверов с паролем. По умолчанию False
-*   Возвращает: list или int: список словарей с данными о серверах с паролем или их количество, если count=True
+* Description: Gets the list of servers requiring a password
+* Arguments: count (bool, optional): If True, returns the number of servers with password. Default is False
+* Returns: list or int: list of dictionaries containing data about servers with password or their number if count=True
 ```python
 servers = GetServers()
 print(servers.get_passworded_servers())
-print(servers.get_passworded_servers(count=True))
+print(servers.get_passworded_servers(count=True)))
 ```
 ## get_require_login_servers(count=False)
 
-*   Описание: Получает список серверов требующих логин
-*   Аргументы: count (bool, optional): Если True, возвращает количество серверов с паролем. По умолчанию False
-*   Возвращает: list или int: список словарей с данными о серверах с паролем или их количество, если count=True
+* Description: Gets a list of servers that require a login
+* Arguments: count (bool, optional): If True, returns the number of servers with a password. Default is False
+* Returns: list or int: a list of dictionaries with data about servers with password or their number if count=True
 ```python
 servers = GetServers()
 print(servers.get_require_login_servers())
 ```
 ## get_location()
 
-*   Описание: Получает расположение сервера
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: локация сервера
+* Description: Gets server location
+* Feature: This function only works if the address was defined in GetServers.
+* Arguments: None
+* Returns: str: server location
 ```python
 servers = GetServers()
 print(servers.get_location())
 ```
 ## get_max_clients()
 
-*   Описание: Получает максимальное количество клиентов на сервере
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: int: максимальное количество клиентов
+* Description: Gets the maximum number of clients on the server
+* Feature: This function works only when the address was defined in GetServers
+* Arguments: None
+* Returns: int: maximum number of clients
 ```python
 servers = GetServers()
 print(servers.get_max_clients())
 ```
 ## get_max_players()
 
-*   Описание: Получает максимальное количество игроков на сервере
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: int: максимальное количество игроков
+* Description: Gets the maximum number of players on the server
+* Feature: This function only works when the address was defined in GetServers
+* Arguments: None
+* Returns: int: maximum number of players
 ```python
 servers = GetServers()
 print(servers.get_max_players())
 ```
 ## get_game_type()
 
-*   Описание: Получает тип игры на сервере
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: тип игры
+* Description: Gets the game type on the server
+* Feature: This function only works if the address was defined in GetServers.
+* Arguments: None
+* Returns: str: game type
 ```python
 servers = GetServers()
 print(servers.get_game_type())
 ```
 ## get_name()
 
-*   Описание: Получает название сервера
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: название сервера
+* Description: Gets the name of the server
+* Feature: This function only works if the address was defined in GetServers.
+* Arguments: None
+* Returns: str: server name
 ```python
 servers = GetServers()
 print(servers.get_name())
 ```
 ## get_map_name()
 
-*   Описание: Получает название карты
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: название карты
+* Description: Gets the map name
+* Feature: This function only works if the address was defined in GetServers.
+* Arguments: None
+* Returns: str: map name
 ```python
 servers = GetServers()
 print(servers.get_map_name())
 ```
 ## get_map_hash()
 
-*   Описание: Получает SHA256 карты
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: SHA256
+* Description: Gets the map SHA256
+* Feature: This function only works if the address was defined in GetServers
+* Arguments: None
+* Returns: str: SHA256
 ```python
 servers = GetServers()
 print(servers.get_map_hash())
 ```
 ## get_map_size()
 
-*   Описание: Получает размер карты в байтах
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: размер карты
+* Description: Gets the map size in bytes
+* Feature: This function only works when the address was defined in GetServers
+* Arguments: None
+* Returns: str: map_size
 ```python
 servers = GetServers()
 print(servers.get_map_size())
 ```
 ## get_version()
 
-*   Описание: Получает версию сервера
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: str: версия сервера
+* Description: Gets the server version
+* Feature: This function only works if the address was defined in GetServers
+* Arguments: None
+* Returns: str: server version
 ```python
 servers = GetServers()
 print(servers.get_version())
 ```
 ## is_require_login()
 
-*   Описание: Проверяет, требуется ли логин на сервере
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: bool: True, если требуется логин, иначе False
+* Description: Checks if login is required on the server
+* Feature: This function only works if the address was defined in GetServers
+* Arguments: None
+* Returns: bool: True if login is required, otherwise False
 ```python
 servers = GetServers()
 print(servers.is_require_login())
 ```
 ## is_passworded()
 
-*   Описание: Проверяет, запаролен ли сервер
-*   Особенность: Данная функция работает только тогда, когда адрес был определен в GetServers
-*   Аргументы: None
-*   Возвращает: bool: True, если сервер запаролен, иначе False
+* Description: Checks if the server is passworded.
+* Feature: This function works only when the address was defined in GetServers.
+* Arguments: None
+* Returns: bool: True if the server is passworded, otherwise False
 ```python
-servers = GetServers()
+servers = GetServers("ip:port")
 print(servers.is_passworded())
 ```
 ## get_server_by_client_name(name, all_servers=False)
 
-*   Описание: Получает сервер по нику клиента
-*   Аргументы: name (str): Ник клиента; all_servers (bool, optional): Если True, берутся все сервера с заданным ником клиента, иначе первое вхождение
-*   Возвращает: list: сервер/серверы
+* Description: Gets server by client nickname
+* Arguments: name (str): Client nickname; all_servers (bool, optional): If True, takes all servers with the given client nickname, otherwise first occurrence
+* Returns: list: server/servers
 ```python
-server = GetServers()
-print(server.get_server_by_client_name("nameless tee", all_servers=True))
+servers = GetServers()
+print(servers.get_server_by_client_name("nameless tee", all_servers=True))
 ```
 ## get_servers_by_game_type(game_type, count=False)
 
-*   Описание: Получает сервера с заданным типом игры
-*   Аргументы: game_type (str): Тип игры
-*   Возвращает: list: сервер/серверы
+* Description: Gets servers with the specified game type
+* Arguments: game_type (str): Game type
+* Returns: list: server/servers
 ```python
 server = GetServers()
 print(server.get_servers_by_game_type("DDRaceNetwork"))
 ```
+# PlayerStatsParser class
 
-# Класс PlayerStatsParser
-
-Пример использования:
+Example usage:
 ```python
 from ddnet_parser import GetPlayerStats
 
@@ -321,111 +315,111 @@ player_stats = GetPlayerStats("nameless tee")
 total_seconds = player_stats.get_total_seconds_played()
 print(total_seconds)
 ```
-Важное замечание: не всегда вся статистика отслеживается сайтом ddstats.tw, особенно если у вас очень много данных. Так, например, для ника **nameless tee** в функциях `get_total_seconds_played`, `get_start_of_playtime`, `get_average_seconds_played`, `get_playtime` возвращается None или пустой список, всегда учитывайте это.
-### Функции к объекту GetPlayerStats() класса PlayerStatsParser:
-## get_raw_data()
+Important note: not all statistics are always tracked by ddstats.tw, especially if you have a lot of data. So, for example, for the nickname **nameless tee** the functions `get_total_seconds_played`, `get_start_of_playtime`, `get_average_seconds_played`, `get_playtime` return None or an empty list, always take this into account.
+### Functions to the GetPlayerStats() object of the PlayerStatsParser class:
+### get_raw_data()
 
-*   Описание: Получает необработанные данные об игроке
-*   Аргументы: None
-*   Возвращает: dict: словарь с данными об игроке
+* Description: Gets raw player data
+* Arguments: None
+* Returns: dict: dictionary with player data
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_raw_data())
 ```
 ## get_raw_recent_activity_data()
 
-*   Описание: Получает необработанные данные об активности игрока
-*   Аргументы: None
-*   Возвращает: list: список с серверами
+* Description: Gets raw player activity data
+* Arguments: None
+* Returns: list: list with servers
 ```python
 player = GetPlayerStats("neyxezz")
-print(player.get_raw_recent_activity_data())
+print(player.get_raw_recent_activity_data()))
 ```
 ## get_total_seconds_played()
 
-*   Описание: Получает общее количество секунд, проведенных в игре
-*   Аргументы: None
-*   Возвращает: int: общее количество секунд
+* Description: Gets the total number of seconds played in the game
+* Arguments: None
+* Returns: int: total number of seconds
 ```python
 player = GetPlayerStats("nameless tee")
-print(player.get_total_seconds_played())
+print(player.get_total_seconds_played()))
 ```
 ## get_start_of_playtime()
 
-*   Описание: Получает дату первого появления в игре
-*   Аргументы: None
-*   Возвращает: str: Возвращает дату начала игрового времени
+* Description: Gets the date of the first appearance in the game
+* Arguments: None
+* Returns: str: Returns the start date of the game time
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_start_of_playtime())
 ```
 ## get_average_seconds_played()
 
-*   Описание: Получает среднее количество секунд, проведенных в игре за день
-*   Аргументы: None
-*   Возвращает: int: среднее количество секунд
+* Description: Gets the average number of seconds spent in the game per day
+* Arguments: None
+* Returns: int: average number of seconds
 ```python
 player = GetPlayerStats("nameless tee")
-print(player.get_average_seconds_played())
+print(player.get_average_seconds_played()))
 ```
 ## get_playtime()
 
-*   Описание: Получает данные об игровом времени по месяцам
-*   Аргументы: None
-*   Возвращает: dict: словарь, где ключ - год и месяц, значение - количество секунд
+* Description: Gets playtime data by month
+* Arguments: None
+* Returns: dict: dictionary where key is year and month, value is number of seconds
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_playtime())
 ```
 ## get_most_played_locations()
 
-*   Описание: Получает данные о наиболее часто играемых локациях серверов
-*   Аргументы: None
-*   Возвращает: dict: словарь, где ключ - локация, значение - количество секунд
+* Description: Gets data about the most frequently played server locations
+* Arguments: None
+* Returns: dict: dictionary where key is the location, value is the number of seconds
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_most_played_locations())
 ```
 ## get_most_played_categories()
 
-*   Описание: Получает данные о наиболее часто играемых категориях карт
-*   Аргументы: None
-*   Возвращает: dict: словарь, где ключ - категория, значение - количество секунд
+* Description: Gets data about the most played card categories
+* Arguments: None
+* Returns: dict: dictionary where key is category, value is number of seconds
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_most_played_categories())
 ```
 ## get_most_played_gametypes()
 
-*   Описание: Получает данные о наиболее часто играемых типах игры
-*   Аргументы: None
-*   Возвращает: dict: словарь, где ключ - тип игры, значение - количество секунд
+* Description: Gets data about the most frequently played game types
+* Arguments: None
+* Returns: dict: dictionary where key is game type, value is number of seconds
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_most_played_gametypes())
 ```
 ## get_favourite_teammates()
 
-*   Описание: Получает данные о тиммейтах, с которыми вместе забрали ранг на карте
-*   Аргументы: None
-*   Возвращает: dict: словарь, где ключ - имя тиммейта, значение - количество совместных игр
+* Description: Gets data about the teammates with whom you ranked together on the map
+* Arguments: None
+* Returns: dict: dictionary where key is the name of the teammate, value is the number of games played together
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_favourite_teammates())
 ```
 ## get_recent_finishes()
 
-*   Описание: Получает данные о последних завершенных мапах
-*   Аргументы: None
-*   Возвращает: list: список с данными о последних завершенных играх
+* Description: Gets data about the most recently completed maps
+* Arguments: None
+* Returns: list: a list with data about the most recently completed games
 ```python
 player = GetPlayerStats("nameless tee")
 print(player.get_recent_finishes())
 ```
 
-# Класс MapsParser
+# MapsParser class
 
-Пример использования:
+Example usage:
 ```python
 from ddnet_parser import GetMap
 
@@ -433,91 +427,90 @@ map = GetMap("Linear")
 print(map.get_mapper())
 ```
 
-### Функции к объекту GetMap() класса MapsParser:
+### Functions to the GetMap() object of the MapsParser class:
 ## get_raw_data()
 
-*   Описание: Получает необработанные данные об игроке
-*   Аргументы: None
-*   Возвращает: dict: словарь с данными об игроке
+* Description: Gets raw player data
+* Arguments: None
+* Returns: dict: dictionary with player data
 ```python
 map = GetMap("Linear")
 print(player.get_raw_data())
 ```
 ## get_finishes()
 
-*   Описание: Получает количество финишей карты
-*   Аргументы: None
-*   Возвращает: int: число финишей карты
+* Description: Gets the number of finishes of the map
+* Arguments: None
+* Returns: int: number of map finishes
 ```python
 map = GetMap("Linear")
 print(player.get_finishes())
 ```
 ## get_create_time()
 
-*   Описание: Получает дату релиза карты
-*   Аргументы: None
-*   Возвращает: str: дата релиза карты
+* Description: Gets the map release date
+* Arguments: None
+* Returns: str: map release date
 ```python
 map = GetMap("Linear")
 print(player.get_create_time())
 ```
 ## get_type()
 
-*   Описание: Получает тип сервера — `Novice`, `Moderate`, `Brutal`, `Insane`...
-*   Аргументы: None
-*   Возвращает: str: тип сервера
+* Description: Gets the server type - `Novice`, `Moderate`, `Brutal`, `Insane`....
+* Arguments: None
+* Returns: str: server type
 ```python
 map = GetMap("Linear")
 print(player.get_type())
 ```
 ## get_points()
 
-*   Описание: Получает количество получаемых очков при прохождении карты
-*   Возвращает: int: количество очков
+* Description: Gets the number of points you get when traversing the map
+* Returns: int: number of points
 ```python
 map = GetMap("Linear")
 print(player.get_points())
 ```
 ## get_stars()
 
-*   Описание: Получает количество звезд карты
-*   Аргументы: None
-*   Возвращает: int: количество звезд
+* Description: Gets the number of stars on the map
+* Arguments: None
+* Returns: int: number of stars
 ```python
 map = GetMap("Linear")
 print(player.get_stars())
 ```
 ## get_mapper()
 
-*   Описание: Получает создателя карты
-*   Аргументы: None
-*   Возвращает: str: создатель карты
+* Description: Gets the map creator
+* Arguments: None
+* Returns: str: map creator
 ```python
 map = GetMap("Linear")
 print(player.get_mapper())
 ```
 ## get_median_time()
 
-*   Описание: Получает среднее время рейса до финиша
-*   Аргументы: None
-*   Возвращает: int: среднее время финиша
+* Description: Gets the average time of a flight to the finish line
+* Arguments: None
+* Returns: int: average time to finish
 ```python
 map = GetMap("Linear")
 print(player.get_median_time())
 ```
 ## get_playtime()
 
-*   Описание: Получает топ по наигранным секундам
-*   Аргументы: None
-*   Возвращает: list: список с топом наигранных секунд на карте
+* Description: Gets the top played seconds.
+* Arguments: None
+* Returns: list: list with the top of played seconds on the map
 ```python
 map = GetMap("Linear")
-print(player.get_playtime())
+print(player.get_playtime()))
 ```
+# ProfileParser class
 
-# Класс ProfileParser
-
-Пример использования:
+Example usage:
 ```python
 from ddnet_parser import GetProfile
 
@@ -525,58 +518,58 @@ profile = GetProfile("neyxezz")
 print(profile.get_skin_color_body())
 ```
 
-### Функции к объекту GetProfile() класса ProfileParser:
+### Functions to the GetProfile() object of the ProfileParser class:
 ## get_raw_data()
 
-*   Описание: Получает необработанные данные о профиле игрока
-*   Аргументы: None
-*   Возвращает: dict: словарь с профилем игрока
+* Description: Gets raw data about the player's profile
+* Arguments: None
+* Returns: dict: dictionary with player profile
 ```python
 profile = GetProfile("neyxezz")
 print(profile.get_raw_data())
 ```
 ## get_points()
 
-*   Описание: Получает общее количество очков
-*   Аргументы: None
-*   Возвращает: int: количество очков
+* Description: Gets the total number of points
+* Arguments: None
+* Returns: int: number of points
 ```python
 profile = GetProfile("neyxezz")
 print(profile.get_points())
 ```
 ## get_country()
 
-*   Описание: Получает код страны
-*   Аргументы: None
-*   Возвращает: int: код страны
+* Description: Gets the country code
+* Arguments: None
+* Returns: int: country code
 ```python
 profile = GetProfile("neyxezz")
 print(profile.get_country())
 ```
 ## get_skin_name()
 
-*   Описание: Получает название скина
-*   Аргументы: None
-*   Возвращает: str: название скина
+* Description: Gets the name of the skin
+* Arguments: None
+* Returns: str: skin name
 ```python
 profile = GetProfile("neyxezz")
 print(profile.get_skin_name())
 ```
-## get_skin_color_body()
+## get_skin_colour_body()
 
-*   Описание: Получает код цвета тела в десятичном представлении
-*   Аргументы: None
-*   Возвращает: int: код цвета
+* Description: Gets the body colour code in decimal representation
+* Arguments: None
+* Returns: int: colour code
 ```python
 profile = GetProfile("neyxezz")
-print(profile.get_skin_color_body())
+print(profile.get_skin_color_body()))
 ```
 ## get_skin_color_feet()
 
-*   Описание: Получает код цвета ног в десятичном представлении
-*   Аргументы: None
-*   Возвращает: int: код цвета
+* Description: Gets the leg colour code in decimal representation
+* Arguments: None
+* Returns: int: colour code
 ```python
 profile = GetProfile("neyxezz")
-print(profile.get_skin_color_feet())
+print(profile.get_skin_color_feet()))
 ```
