@@ -1,9 +1,9 @@
 ## Navigation:
-- [GetClients](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-clientsparser)
-- [GetServers](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-serversparser)
-- [GetPlayerStats](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-playerstatsparser)
-- [GetMap](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-mapsparser)
-- [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-profileparser)
+- [GetClients](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#clientsparser-class)
+- [GetServers](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#serversparser-class)
+- [GetPlayerStats](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#playerstatsparser-class)
+- [GetMap](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#mapsparser-class)
+- [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#profileparser-class)
 
 ## Updating data with update()
 For each class object, you can use the `update()` function to update the data

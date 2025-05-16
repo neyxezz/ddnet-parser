@@ -18,7 +18,7 @@ pip install git+https://github.com/neyxezz/ddnet-parser@tests
 
 ## GetClients(address=None)
 * Gets an object for parsing client information
-* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-clientsparser)
+* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#clientsparser-class)
 * Args: address(bool, optional): address of the server for which to get client information
 
 Example:
@@ -30,7 +30,7 @@ print(clients.get_clients(count=True))
 ```
 ## GetServers(address=None)
 * Gets an object for parsing server information
-* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-serversparser)
+* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#serversparser-class)
 * Args: address(bool, optional): address of the server to get information for
 
 Example:
@@ -42,7 +42,7 @@ print(servers.get_count())
 ```
 ## GetPlayerStats(name)
 * Gets an object for parsing player stats
-* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-playerstatsparser)
+* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#playerstatsparser-class)
 * Args: name(str): the nickname for which you want to get stats
 
 Example:
@@ -54,7 +54,7 @@ print(player.get_total_seconds_played())
 ```
 ## GetMap(_map)
 * Gets an object for parsing map data
-* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-mapsparser)
+* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#mapsparser-class)
 * Args: address(str): the map to get data for
 
 Example:
@@ -66,7 +66,7 @@ print(map.get_mapper())
 ```
 ## GetProfile(name)
 * Gets an object for parsing a player's profile
-* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#%D0%BA%D0%BB%D0%B0%D1%81%D1%81-profileparser)
+* Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#profileparser-class)
 * Args: name(str): the nickname to get the profile for
 
 Example:
