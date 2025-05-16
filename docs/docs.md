@@ -66,6 +66,7 @@ print(clients.get_clients(types="spectator"))
 Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
 *   Аргументы:
     *   count (bool, optional): Если True, возвращает количество AFK клиентов. По умолчанию False
+    *   types (str, optional): Тип клиента
 *   Возвращает: list или int: список словарей с информацией об AFK клиентах или количество AFK клиентов, если count=True
 ```python
 clients = GetClients("ip:port")
@@ -111,6 +112,7 @@ print(clients.get_team("nameless tee"))
 Учтите, что подключающиеся клиенты тоже являются спектаторами и помечаются ником `(connecting)`
 *   Аргументы:
     *   name (str): Имя клиента
+    *   types (str, optional): Тип клиента
 *   Возвращает: bool: True, если клиент онлайн, иначе False
 ```python
 clients = GetClients("ip:port")
