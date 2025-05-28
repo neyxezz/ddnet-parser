@@ -1,4 +1,14 @@
-from .parsers import _fetch_master_data, _fetch_player_data, _fetch_map_data, _fetch_profile_data, ServersParser, ClientsParser, PlayerStatsParser, MapsParser, ProfileParser
+from .parsers import (
+    _fetch_master_data,
+    _fetch_player_data,
+    _fetch_map_data,
+    _fetch_profile_data,
+    ServersParser,
+    ClientsParser,
+    PlayerStatsParser,
+    MapsParser,
+    ProfileParser
+)
 
 class DDNetMasterParser:
     def __init__(self, address):

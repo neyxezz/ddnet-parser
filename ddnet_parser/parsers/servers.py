@@ -10,7 +10,7 @@ class ServersParser:
 
     def _get_server_by_address(self) -> dict or None:
         if not self.address:
-            raise ValueError("Не указан адрес в GetServers")
+            raise ValueError("No address specified in GetServers func")
         for server in self.response["servers"]:
             if self.address in [x.split("//")[-1] for x in server["addresses"]]:
                 return server
@@ -124,6 +124,24 @@ class ServersParser:
         servers = []
         for server in self.response["servers"]:
             if server["info"]["game_type"] == game_type:
+                servers.append(server)
+        if servers:
+            return len(servers) if count else servers
+        return None
+
+    def get_servers_by_location(self, location: str, count: bool = False) -> list:
+        servers = []
+        for server in self.response["servers"]:
+            if server["info"]["location"] == location:
+                servers.append(server)
+        if servers:
+            return len(servers) if count else servers
+        return None
+
+    def get_servers_by_map_name(self, map_name: str, count: bool = False) -> list:
+        servers = []
+        for server in self.response["servers"]:
+            if server["info"]["map"]["name"] == map_name:
                 servers.append(server)
         if servers:
             return len(servers) if count else servers
