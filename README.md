@@ -16,10 +16,10 @@ Installing test and unstable version of the parser:
 pip install git+https://github.com/neyxezz/ddnet-parser@tests
 ```
 
-## GetClients(address=None)
+## GetClients(address=None, data=None)
 * Gets an object for parsing client information
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#clientsparser-class)
-* Args: address(bool, optional): address of the server for which to get client information
+* Args: address(bool, optional): address of the server for which to get client information; data(dict or str, optional): data from which the information will be parsed
 
 Example:
 ```python
@@ -28,10 +28,10 @@ from ddnet_parser import GetClients
 clients = GetClients()
 print(clients.get_clients(count=True))
 ```
-## GetServers(address=None)
+## GetServers(address=None, data=None)
 * Gets an object for parsing server information
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#serversparser-class)
-* Args: address(bool, optional): address of the server to get information for
+* Args: address(bool, optional): address of the server to get information for; data(dict or str, optional): data from which the information will be parsed
 
 Example:
 ```python
