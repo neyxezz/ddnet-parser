@@ -9,10 +9,14 @@ from .parsers import (
     MapsParser,
     ProfileParser
 )
+import json
 
 class DDNetMasterParser:
-    def __init__(self, address):
-        self.response = _fetch_master_data()
+    def __init__(self, address, data):
+        if data and isinstance(data, dict):
+            self.response = data
+        else:
+            self.response = _fetch_master_data()
         self.servers = ServersParser(self.response, address)
         self.clients = ClientsParser(self.response, address)
 
@@ -31,12 +35,12 @@ class DDNetProfileParser:
         self.response = _fetch_profile_data(name)
         self.data = ProfileParser(self.response, name)
 
-def GetServers(address=None):
-    master = DDNetMasterParser(address)
+def GetServers(address=None, data=None):
+    master = DDNetMasterParser(address, json.loads(data))
     return master.servers
 
-def GetClients(address=None):
-    master = DDNetMasterParser(address)
+def GetClients(address=None, data=None):
+    master = DDNetMasterParser(address, json.loads(data))
     return master.clients
 
 def GetPlayerStats(name):

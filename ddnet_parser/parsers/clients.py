@@ -56,7 +56,7 @@ class ClientsParser:
                 is_include = not client["is_player"]
             else:
                 raise ValueError("Unknown type '{}'. There are: client, player, spectator".format(types))
-            if client["afk"] and is_include:
+            if client.get("afk") and is_include:
                 clients_afk_list.append(client)
         if count:
             return len(clients_afk_list) if len(clients_afk_list) != 0 else None
