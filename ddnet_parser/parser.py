@@ -36,11 +36,35 @@ class DDNetProfileParser:
         self.data = ProfileParser(self.response, name)
 
 def GetServers(address=None, data=None):
-    master = DDNetMasterParser(address, json.loads(data))
+    if isinstance(data, str):
+        try:
+            data = json.loads(data)
+            if not isinstance(data, dict):
+                raise ValueError("String data does not represent a dictionary")
+        except json.JSONDecodeError as e:
+            raise ValueError("Invalid JSON string: %s" % str(e))
+        except Exception as e:
+            raise e
+    else:
+        if not isinstance(data, dict):
+            raise ValueError("Invalid data given for '%s', given '%s', expected 'dict' or 'str' with dictionary" % (__name__, type(data).__name__))
+    master = DDNetMasterParser(address, data)
     return master.servers
 
 def GetClients(address=None, data=None):
-    master = DDNetMasterParser(address, json.loads(data))
+    if isinstance(data, str):
+        try:
+            data = json.loads(data)
+            if not isinstance(data, dict):
+                raise ValueError("String data does not represent a dictionary")
+        except json.JSONDecodeError as e:
+            raise ValueError("Invalid JSON string: %s" % str(e))
+        except Exception as e:
+            raise e
+    else:
+        if not isinstance(data, dict):
+            raise ValueError("Invalid data given for '%s', given '%s', expected 'dict' or 'str' with dictionary" % (__name__, type(data).__name__))
+    master = DDNetMasterParser(address, data)
     return master.clients
 
 def GetPlayerStats(name):

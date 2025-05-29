@@ -6,7 +6,7 @@
 - [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#profileparser-class)
 
 ## Updating data with update()
-For each class object, you can use the `update()` function to update the data
+For each class object, you can use the `update()` function to update the data.
 
 Example:
 ```python
@@ -19,6 +19,22 @@ time.sleep(10)
 clients.update()
 print(clients.get_clients(count=True)))
 ```
+
+## Using existing data
+At the moment, you can use existing data in DDNetMasterParser without parsing fresh data from master1.ddnet.org. Every 5 minutes, starting with 3 minutes from daystart, data from master tracked [here](https://ddnet.org/stats/master/). You can also download archives with data from master for past days and use it.
+
+Example:
+```python
+from ddnet_parser import GetServers
+
+with open("00_00_03.json") as f:
+    servers_data = f.read()
+
+servers = GetServers(data=servers_data)
+print(servers.get_count())
+```
+
+Important note: Make sure you provide the correct data, dictionary or string representing dictionary
 
 # ClientsParser class
 Example usage:
