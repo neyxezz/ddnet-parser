@@ -36,7 +36,7 @@ class DDNetProfileParser:
         self.data = ProfileParser(self.response, name)
 
 def GetServers(address=None, data=None):
-    if isinstance(data, str):
+    if isinstance(data, str) and data:
         try:
             data = json.loads(data)
             if not isinstance(data, dict):
@@ -46,13 +46,13 @@ def GetServers(address=None, data=None):
         except Exception as e:
             raise e
     else:
-        if not isinstance(data, dict):
-            raise ValueError("Invalid data given for '%s', given '%s', expected 'dict' or 'str' with dictionary" % (__name__, type(data).__name__))
+        if not isinstance(data, dict) and data:
+            raise ValueError("Invalid data for '%s', given '%s', expected 'dict' or 'str' with dictionary" % (__name__, type(data).__name__))
     master = DDNetMasterParser(address, data)
     return master.servers
 
 def GetClients(address=None, data=None):
-    if isinstance(data, str):
+    if isinstance(data, str) and data:
         try:
             data = json.loads(data)
             if not isinstance(data, dict):
@@ -62,8 +62,8 @@ def GetClients(address=None, data=None):
         except Exception as e:
             raise e
     else:
-        if not isinstance(data, dict):
-            raise ValueError("Invalid data given for '%s', given '%s', expected 'dict' or 'str' with dictionary" % (__name__, type(data).__name__))
+        if not isinstance(data, dict) and data:
+            raise ValueError("Invalid data for '%s', given '%s', expected 'dict' or 'str' with dictionary" % (__name__, type(data).__name__))
     master = DDNetMasterParser(address, data)
     return master.clients
 

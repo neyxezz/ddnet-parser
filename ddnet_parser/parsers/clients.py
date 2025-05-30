@@ -49,7 +49,7 @@ class ClientsParser:
         clients = self._get_clients()
         for client in clients:
             if types=="client":
-                is_include = True #все клиенты
+                is_include = True
             elif types=="player":
                 is_include = client["is_player"]
             elif types=="spectator":
@@ -87,7 +87,7 @@ class ClientsParser:
         clients = self._get_clients()
         for client in clients:
             if types=="client":
-                is_include = True #все клиенты
+                is_include = True
             elif types=="player":
                 is_include = client["is_player"]
             elif types=="spectator":
