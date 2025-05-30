@@ -5,10 +5,10 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="ddnet_parser",
-    version="1.1.0",
+    version="1.2.0",
     author="neyxezz",
     author_email="bassboosthelp@gmail.com",
-    description="Простой парсер данных с различных сайтов дднета",
+    description="Simple data parser from ddnet sites",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/neyxezz/ddnet-parser",
