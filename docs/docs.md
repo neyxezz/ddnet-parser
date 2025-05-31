@@ -320,6 +320,24 @@ print(servers.get_server_by_client_name("nameless tee", all_servers=True))
 server = GetServers()
 print(server.get_servers_by_game_type("DDRaceNetwork"))
 ```
+## get_servers_by_location(location, count=False)
+
+* Description: Gets servers with the specified location
+* Arguments: location (str): Location
+* Returns: list: server/servers
+```python
+server = GetServers()
+print(server.get_servers_by_location("DDRaceNetwork"))
+```
+## get_servers_by_map_name(map_name, count=False)
+
+* Description: Gets servers with the specified map name
+* Arguments: map_name (str): Map name
+* Returns: list: server/servers
+```python
+server = GetServers()
+print(server.get_servers_by_map_name("Stronghold"))
+```
 # PlayerStatsParser class
 
 Example usage:
