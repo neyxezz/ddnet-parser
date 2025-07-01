@@ -338,6 +338,15 @@ print(server.get_servers_by_location("DDRaceNetwork"))
 server = GetServers()
 print(server.get_servers_by_map_name("Stronghold"))
 ```
+## get_servers_by_clients_count(start, end, count=False)
+
+* Description: Gets servers by clients count
+* Arguments: start (int): start of range; end (int): end of range
+* Returns: list: server/servers
+```python
+servers = GetServers()
+s_ = servers.get_servers_by_clients_count(60, 63, True))
+```
 # PlayerStatsParser class
 
 Example usage:

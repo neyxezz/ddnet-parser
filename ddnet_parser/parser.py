@@ -35,7 +35,7 @@ class DDNetProfileParser:
         self.response = _fetch_profile_data(name)
         self.data = ProfileParser(self.response, name)
 
-def GetServers(address=None, data=None):
+def get_servers(address=None, data=None):
     if isinstance(data, str) and data:
         try:
             data = json.loads(data)
@@ -51,7 +51,7 @@ def GetServers(address=None, data=None):
     master = DDNetMasterParser(address, data)
     return master.servers
 
-def GetClients(address=None, data=None):
+def get_clients(address=None, data=None):
     if isinstance(data, str) and data:
         try:
             data = json.loads(data)
@@ -67,15 +67,15 @@ def GetClients(address=None, data=None):
     master = DDNetMasterParser(address, data)
     return master.clients
 
-def GetPlayerStats(name):
+def get_player_stats(name):
     player = DDNetStatisticsParser(name)
     return player.stats
 
-def GetMap(_map):
+def get_map(_map):
     maps = DDNetMapsParser(_map)
     return maps.map
 
-def GetProfile(name):
+def get_profile(name):
     profile = DDNetProfileParser(name)
     return profile.data
 

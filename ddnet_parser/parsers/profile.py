@@ -8,11 +8,17 @@ class ProfileParser:
     def update(self):
         self.response = _fetch_profile_data(self.name)
 
+    def __str__(self):
+        return str(self.response)
+
     def get_raw_data(self) -> dict:
         return self.response
 
     def get_points(self) -> int:
         return self.response["points"]
+
+    def get_clan(self) -> str:
+        return self.response["clan"]
 
     def get_country(self) -> int:
         return self.response["country"]

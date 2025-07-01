@@ -5,6 +5,9 @@ class PlayerStatsParser:
         self.response = response
         self.name = name
 
+    def __str__(self):
+        return str(self.response)
+
     def update(self):
         self.response = _fetch_player_data(self.name)
 
@@ -19,18 +22,6 @@ class PlayerStatsParser:
 
     def _get_completion_progress(self) -> list:
         return self.response["completion_progress"]
-
-    def _get_recent_player_info(self) -> list:
-        return self.response["recent_activity"]
-
-    def _get_recent_player_info(self) -> list:
-        return self.response["recent_activity"]
-
-    def _get_recent_player_info(self) -> list:
-        return self.response["recent_activity"]
-
-    def _get_recent_player_info(self) -> list:
-        return self.response["recent_activity"]
 
     def _get_activity(self) -> dict:
         try:
