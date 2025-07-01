@@ -1,19 +1,19 @@
 ## Navigation:
-- [GetClients](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#clientsparser-class)
-- [GetServers](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#serversparser-class)
-- [GetPlayerStats](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#playerstatsparser-class)
-- [GetMap](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#mapsparser-class)
-- [GetProfile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#profileparser-class)
+- [get_clients](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#clientsparser-class)
+- [get_servers](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#serversparser-class)
+- [get_player_stats](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#playerstatsparser-class)
+- [get_map](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#mapsparser-class)
+- [get_profile](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#profileparser-class)
 
 ## Updating data with update()
 For each class object, you can use the `update()` function to update the data.
 
 Example:
 ```python
-from ddnet_parser import GetClients
+from ddnet_parser import get_clients
 import time
 
-clients = GetClients()
+clients = get_clients()
 print(clients.get_clients(count=True))
 time.sleep(10)
 clients.update()
@@ -25,12 +25,12 @@ At the moment, you can use existing data in DDNetMasterParser without parsing fr
 
 Example:
 ```python
-from ddnet_parser import GetServers
+from ddnet_parser import get_servers
 
 with open("00_00_03.json") as f:
     servers_data = f.read()
 
-servers = GetServers(data=servers_data)
+servers = get_servers(data=servers_data)
 print(servers.get_count())
 ```
 
@@ -39,12 +39,12 @@ Important note: Make sure you provide the correct data, dictionary or string rep
 # ClientsParser class
 Example usage:
 ```python
-from ddnet_parser import GetClients
+from ddnet_parser import get_clients
 
-clients = GetClients()
+clients = get_clients()
 print(clients.get_clients(count=True))
 ```
-### Functions to the GetClients() object of the ClientsParser class:
+### Functions to the get_clients() object of the ClientsParser class:
 ## get_raw_data(name).
 
 * Description: Gets the raw data of a client by its name
@@ -53,13 +53,13 @@ print(clients.get_clients(count=True))
 * Features: If an address is given, returns the client specifically at that address, otherwise, the first occurrence.
 * Returns: dict or None: dictionary with client data if client is found, otherwise None
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.get_raw_data("nameless tee"))
 ```
 ## get_clients(count=False, types="client")
 
 * Description: Gets a list of all clients by the given type.
-* Features: If the address is given in the GetClients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
+* Features: If the address is given in the get_clients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
     - client (all clients);
     - player (regular players);
     - spectator (spectators)
@@ -69,13 +69,13 @@ Note that connecting clients are also spectators and are marked with the nicknam
     * types (str, optional): Client type.
 * Returns: list or int: list of dictionaries with client information or number of clients if count=True
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.get_clients(types="spectator"))
 ```
 ## get_afk_clients(count=False, types="client")
 
 * Description: Gets a list of all AFK clients
-* Features: If the address is given in the GetClients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
+* Features: If the address is given in the get_clients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
     - client (all clients);
     - player (regular players);
     - spectator (spectators)
@@ -85,7 +85,7 @@ Note that connecting clients are also spectators and are marked with the nicknam
     * types (str, optional): Client type.
 * Returns: list or int: list of dictionaries with AFK client information or number of AFK clients if count=True
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.get_afk_clients(types="spectator"))
 ```
 ## get_clan(name)
@@ -95,7 +95,7 @@ print(clients.get_afk_clients(types="spectator"))
     * name (str): Client's name
 * Returns: str or None: client clan name if client is found, otherwise None
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.get_clan("nameless tee"))
 ```
 ## get_team(name)
@@ -105,7 +105,7 @@ print(clients.get_clan("nameless tee"))
     * name (str): The client's name
 * Returns: str or None: client team if client is found, otherwise None
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.get_team("nameless tee"))
 ```
 ## get_score(name)
@@ -115,13 +115,13 @@ print(clients.get_team("nameless tee"))
     * name (str): The client's name
 * Returns: str or None: client's team name if client is found, otherwise None
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.get_team("nameless tee"))
 ```
 ## is_online(name, types="client")
 
 * Description: Checks if the client is online by name
-* Features: If the address is given in the GetClients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
+* Features: If the address is given in the get_clients function, returns all clients of the server, otherwise all clients of all servers. The main types of clients for the types variable are:
     - client (all clients);
     - player (regular players);
     - spectator (spectators)
@@ -131,7 +131,7 @@ Note that connecting clients are also spectators and are marked with the nicknam
     * types (str, optional): Client type
 * Returns: bool: True if client is online, otherwise False
 ```python
-clients = GetClients("ip:port")
+clients = get_clients("ip:port")
 print(clients.is_online("nameless tee", types="spectator")))
 ```
 ## get_clients_with_same_clan(clan)
@@ -139,21 +139,21 @@ print(clients.is_online("nameless tee", types="spectator")))
 * Description: Gets a list of clients with the given clan
 * Arguments: str: clan
 ```python
-from ddnet_parser import GetClients
+from ddnet_parser import get_clients
 
-clients = GetClients()
+clients = get_clients()
 print(clients.get_clients_with_same_clan("clan"))
 ```
 # ServersParser class
 
 Example usage:
 ```python
-from ddnet_parser import GetServers
+from ddnet_parser import get_servers
 
-server = GetServers("ip:port")
+server = get_servers("ip:port")
 print(server.get_name())
 ```
-### Functions to the GetServers() object of the ServersParser class:
+### Functions to the get_servers() object of the ServersParser class:
 ## get_raw_data()
 
 * Description: Gets the raw data of a server or all servers
@@ -161,7 +161,7 @@ print(server.get_name())
 * Arguments: None
 * Returns: dict or list: dictionary with server data if address is given, otherwise dictionary list with all servers
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_raw_data())
 ```
 ## get_count()
@@ -170,7 +170,7 @@ print(servers.get_raw_data())
 * Arguments: None
 * Returns: int: total number of servers.
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_count())
 ```
 ## get_passworded_servers(count=False)
@@ -179,7 +179,7 @@ print(servers.get_count())
 * Arguments: count (bool, optional): If True, returns the number of servers with password. Default is False
 * Returns: list or int: list of dictionaries containing data about servers with password or their number if count=True
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_passworded_servers())
 print(servers.get_passworded_servers(count=True)))
 ```
@@ -189,117 +189,117 @@ print(servers.get_passworded_servers(count=True)))
 * Arguments: count (bool, optional): If True, returns the number of servers with a password. Default is False
 * Returns: list or int: a list of dictionaries with data about servers with password or their number if count=True
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_require_login_servers())
 ```
 ## get_location()
 
 * Description: Gets server location
-* Feature: This function only works if the address was defined in GetServers.
+* Feature: This function only works if the address was defined in get_servers.
 * Arguments: None
 * Returns: str: server location
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_location())
 ```
 ## get_max_clients()
 
 * Description: Gets the maximum number of clients on the server
-* Feature: This function works only when the address was defined in GetServers
+* Feature: This function works only when the address was defined in get_servers
 * Arguments: None
 * Returns: int: maximum number of clients
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_max_clients())
 ```
 ## get_max_players()
 
 * Description: Gets the maximum number of players on the server
-* Feature: This function only works when the address was defined in GetServers
+* Feature: This function only works when the address was defined in get_servers
 * Arguments: None
 * Returns: int: maximum number of players
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_max_players())
 ```
 ## get_game_type()
 
 * Description: Gets the game type on the server
-* Feature: This function only works if the address was defined in GetServers.
+* Feature: This function only works if the address was defined in get_servers.
 * Arguments: None
 * Returns: str: game type
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_game_type())
 ```
 ## get_name()
 
 * Description: Gets the name of the server
-* Feature: This function only works if the address was defined in GetServers.
+* Feature: This function only works if the address was defined in get_servers.
 * Arguments: None
 * Returns: str: server name
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_name())
 ```
 ## get_map_name()
 
 * Description: Gets the map name
-* Feature: This function only works if the address was defined in GetServers.
+* Feature: This function only works if the address was defined in get_servers.
 * Arguments: None
 * Returns: str: map name
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_map_name())
 ```
 ## get_map_hash()
 
 * Description: Gets the map SHA256
-* Feature: This function only works if the address was defined in GetServers
+* Feature: This function only works if the address was defined in get_servers
 * Arguments: None
 * Returns: str: SHA256
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_map_hash())
 ```
 ## get_map_size()
 
 * Description: Gets the map size in bytes
-* Feature: This function only works when the address was defined in GetServers
+* Feature: This function only works when the address was defined in get_servers
 * Arguments: None
 * Returns: str: map_size
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_map_size())
 ```
 ## get_version()
 
 * Description: Gets the server version
-* Feature: This function only works if the address was defined in GetServers
+* Feature: This function only works if the address was defined in get_servers
 * Arguments: None
 * Returns: str: server version
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_version())
 ```
 ## is_require_login()
 
 * Description: Checks if login is required on the server
-* Feature: This function only works if the address was defined in GetServers
+* Feature: This function only works if the address was defined in get_servers
 * Arguments: None
 * Returns: bool: True if login is required, otherwise False
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.is_require_login())
 ```
 ## is_passworded()
 
 * Description: Checks if the server is passworded.
-* Feature: This function works only when the address was defined in GetServers.
+* Feature: This function works only when the address was defined in get_servers.
 * Arguments: None
 * Returns: bool: True if the server is passworded, otherwise False
 ```python
-servers = GetServers("ip:port")
+servers = get_servers("ip:port")
 print(servers.is_passworded())
 ```
 ## get_server_by_client_name(name, all_servers=False)
@@ -308,7 +308,7 @@ print(servers.is_passworded())
 * Arguments: name (str): Client nickname; all_servers (bool, optional): If True, takes all servers with the given client nickname, otherwise first occurrence
 * Returns: list: server/servers
 ```python
-servers = GetServers()
+servers = get_servers()
 print(servers.get_server_by_client_name("nameless tee", all_servers=True))
 ```
 ## get_servers_by_game_type(game_type, count=False)
@@ -317,7 +317,7 @@ print(servers.get_server_by_client_name("nameless tee", all_servers=True))
 * Arguments: game_type (str): Game type
 * Returns: list: server/servers
 ```python
-server = GetServers()
+server = get_servers()
 print(server.get_servers_by_game_type("DDRaceNetwork"))
 ```
 ## get_servers_by_location(location, count=False)
@@ -326,7 +326,7 @@ print(server.get_servers_by_game_type("DDRaceNetwork"))
 * Arguments: location (str): Location
 * Returns: list: server/servers
 ```python
-server = GetServers()
+server = get_servers()
 print(server.get_servers_by_location("DDRaceNetwork"))
 ```
 ## get_servers_by_map_name(map_name, count=False)
@@ -335,7 +335,7 @@ print(server.get_servers_by_location("DDRaceNetwork"))
 * Arguments: map_name (str): Map name
 * Returns: list: server/servers
 ```python
-server = GetServers()
+server = get_servers()
 print(server.get_servers_by_map_name("Stronghold"))
 ```
 ## get_servers_by_clients_count(start, end, count=False)
@@ -344,29 +344,29 @@ print(server.get_servers_by_map_name("Stronghold"))
 * Arguments: start (int): start of range; end (int): end of range
 * Returns: list: server/servers
 ```python
-servers = GetServers()
+servers = get_servers()
 s_ = servers.get_servers_by_clients_count(60, 63, True))
 ```
 # PlayerStatsParser class
 
 Example usage:
 ```python
-from ddnet_parser import GetPlayerStats
+from ddnet_parser import get_player_stats
 
-player_stats = GetPlayerStats("nameless tee")
+player_stats = get_player_stats("nameless tee")
 
 total_seconds = player_stats.get_total_seconds_played()
 print(total_seconds)
 ```
 Important note: not all statistics are always tracked by ddstats.tw, especially if you have a lot of data. So, for example, for the nickname **nameless tee** the functions `get_total_seconds_played`, `get_start_of_playtime`, `get_average_seconds_played`, `get_playtime` return None or an empty list, always take this into account.
-### Functions to the GetPlayerStats() object of the PlayerStatsParser class:
+### Functions to the get_player_stats() object of the PlayerStatsParser class:
 ### get_raw_data()
 
 * Description: Gets raw player data
 * Arguments: None
 * Returns: dict: dictionary with player data
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_raw_data())
 ```
 ## get_raw_recent_activity_data()
@@ -375,7 +375,7 @@ print(player.get_raw_data())
 * Arguments: None
 * Returns: list: list with servers
 ```python
-player = GetPlayerStats("neyxezz")
+player = get_player_stats("neyxezz")
 print(player.get_raw_recent_activity_data()))
 ```
 ## get_total_seconds_played()
@@ -384,7 +384,7 @@ print(player.get_raw_recent_activity_data()))
 * Arguments: None
 * Returns: int: total number of seconds
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_total_seconds_played()))
 ```
 ## get_start_of_playtime()
@@ -393,7 +393,7 @@ print(player.get_total_seconds_played()))
 * Arguments: None
 * Returns: str: Returns the start date of the game time
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_start_of_playtime())
 ```
 ## get_average_seconds_played()
@@ -402,7 +402,7 @@ print(player.get_start_of_playtime())
 * Arguments: None
 * Returns: int: average number of seconds
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_average_seconds_played()))
 ```
 ## get_playtime()
@@ -411,7 +411,7 @@ print(player.get_average_seconds_played()))
 * Arguments: None
 * Returns: dict: dictionary where key is year and month, value is number of seconds
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_playtime())
 ```
 ## get_most_played_locations()
@@ -420,7 +420,7 @@ print(player.get_playtime())
 * Arguments: None
 * Returns: dict: dictionary where key is the location, value is the number of seconds
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_most_played_locations())
 ```
 ## get_most_played_categories()
@@ -429,7 +429,7 @@ print(player.get_most_played_locations())
 * Arguments: None
 * Returns: dict: dictionary where key is category, value is number of seconds
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_most_played_categories())
 ```
 ## get_most_played_gametypes()
@@ -438,7 +438,7 @@ print(player.get_most_played_categories())
 * Arguments: None
 * Returns: dict: dictionary where key is game type, value is number of seconds
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_most_played_gametypes())
 ```
 ## get_favourite_teammates()
@@ -447,7 +447,7 @@ print(player.get_most_played_gametypes())
 * Arguments: None
 * Returns: dict: dictionary where key is the name of the teammate, value is the number of games played together
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_favourite_teammates())
 ```
 ## get_recent_finishes()
@@ -456,7 +456,7 @@ print(player.get_favourite_teammates())
 * Arguments: None
 * Returns: list: a list with data about the most recently completed games
 ```python
-player = GetPlayerStats("nameless tee")
+player = get_player_stats("nameless tee")
 print(player.get_recent_finishes())
 ```
 
@@ -464,20 +464,20 @@ print(player.get_recent_finishes())
 
 Example usage:
 ```python
-from ddnet_parser import GetMap
+from ddnet_parser import get_map
 
-map = GetMap("Linear")
+map = get_map("Linear")
 print(map.get_mapper())
 ```
 
-### Functions to the GetMap() object of the MapsParser class:
+### Functions to the get_map() object of the MapsParser class:
 ## get_raw_data()
 
 * Description: Gets raw player data
 * Arguments: None
 * Returns: dict: dictionary with player data
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_raw_data())
 ```
 ## get_finishes()
@@ -486,7 +486,7 @@ print(player.get_raw_data())
 * Arguments: None
 * Returns: int: number of map finishes
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_finishes())
 ```
 ## get_create_time()
@@ -495,7 +495,7 @@ print(player.get_finishes())
 * Arguments: None
 * Returns: str: map release date
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_create_time())
 ```
 ## get_type()
@@ -504,7 +504,7 @@ print(player.get_create_time())
 * Arguments: None
 * Returns: str: server type
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_type())
 ```
 ## get_points()
@@ -512,7 +512,7 @@ print(player.get_type())
 * Description: Gets the number of points you get when traversing the map
 * Returns: int: number of points
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_points())
 ```
 ## get_stars()
@@ -521,7 +521,7 @@ print(player.get_points())
 * Arguments: None
 * Returns: int: number of stars
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_stars())
 ```
 ## get_mapper()
@@ -530,7 +530,7 @@ print(player.get_stars())
 * Arguments: None
 * Returns: str: map creator
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_mapper())
 ```
 ## get_median_time()
@@ -539,7 +539,7 @@ print(player.get_mapper())
 * Arguments: None
 * Returns: int: average time to finish
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_median_time())
 ```
 ## get_playtime()
@@ -548,27 +548,27 @@ print(player.get_median_time())
 * Arguments: None
 * Returns: list: list with the top of played seconds on the map
 ```python
-map = GetMap("Linear")
+map = get_map("Linear")
 print(player.get_playtime()))
 ```
 # ProfileParser class
 
 Example usage:
 ```python
-from ddnet_parser import GetProfile
+from ddnet_parser import get_profile
 
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_skin_color_body())
 ```
 
-### Functions to the GetProfile() object of the ProfileParser class:
+### Functions to the get_profile() object of the ProfileParser class:
 ## get_raw_data()
 
 * Description: Gets raw data about the player's profile
 * Arguments: None
 * Returns: dict: dictionary with player profile
 ```python
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_raw_data())
 ```
 ## get_points()
@@ -577,8 +577,18 @@ print(profile.get_raw_data())
 * Arguments: None
 * Returns: int: number of points
 ```python
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_points())
+```
+## get_clan(name)
+
+* Description: Gets the client's clan by name
+* Arguments:
+    * name (str): Client's name
+* Returns: str or None: client clan name if client is found, otherwise None
+```python
+profile = get_profile("nameless tee")
+print(profile.get_clan())
 ```
 ## get_country()
 
@@ -586,7 +596,7 @@ print(profile.get_points())
 * Arguments: None
 * Returns: int: country code
 ```python
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_country())
 ```
 ## get_skin_name()
@@ -595,7 +605,7 @@ print(profile.get_country())
 * Arguments: None
 * Returns: str: skin name
 ```python
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_skin_name())
 ```
 ## get_skin_colour_body()
@@ -604,7 +614,7 @@ print(profile.get_skin_name())
 * Arguments: None
 * Returns: int: colour code
 ```python
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_skin_color_body()))
 ```
 ## get_skin_color_feet()
@@ -613,6 +623,6 @@ print(profile.get_skin_color_body()))
 * Arguments: None
 * Returns: int: colour code
 ```python
-profile = GetProfile("neyxezz")
+profile = get_profile("neyxezz")
 print(profile.get_skin_color_feet()))
 ```
