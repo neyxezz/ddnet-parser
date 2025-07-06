@@ -16,64 +16,64 @@ Installing test and unstable version of the parser:
 pip install git+https://github.com/neyxezz/ddnet-parser@tests
 ```
 
-## GetClients(address=None, data=None)
+# get_clients(address=None, data=None)
 * Gets an object for parsing client information
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#clientsparser-class)
 * Args: address(bool, optional): address of the server for which to get client information; data(dict or str, optional): data from which the information will be parsed
 
 Example:
 ```python
-from ddnet_parser import GetClients
+from ddnet_parser import get_clients
 
-clients = GetClients()
+clients = get_clients()
 print(clients.get_clients(count=True))
 ```
-## GetServers(address=None, data=None)
+## get_servers(address=None, data=None)
 * Gets an object for parsing server information
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#serversparser-class)
 * Args: address(bool, optional): address of the server to get information for; data(dict or str, optional): data from which the information will be parsed
 
 Example:
 ```python
-from ddnet_parser import GetServers
+from ddnet_parser import get_servers
 
-servers = GetServers()
+servers = get_servers()
 print(servers.get_count())
 ```
-## GetPlayerStats(name)
+## get_player_stats(name)
 * Gets an object for parsing player stats
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#playerstatsparser-class)
 * Args: name(str): the nickname for which you want to get stats
 
 Example:
 ```python
-from ddnet_parser import GetPlayerStats
+from ddnet_parser import get_player_stats
 
-player = GetPlayerStats("neyxezz")
+player = get_player_stats("neyxezz")
 print(player.get_total_seconds_played())
 ```
-## GetMap(_map)
+## get_map(_map)
 * Gets an object for parsing map data
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#mapsparser-class)
 * Args: address(str): the map to get data for
 
 Example:
 ```python
-from ddnet_parser import GetMap
+from ddnet_parser import get_map
 
-map = GetMap("Linear")
+map = get_map("Linear")
 print(map.get_mapper())
 ```
-## GetProfile(name)
+## get_profile(name)
 * Gets an object for parsing a player's profile
 * Documentation: [🙂](https://github.com/neyxezz/ddnet-parser/blob/main/docs/docs.md#profileparser-class)
 * Args: name(str): the nickname to get the profile for
 
 Example:
 ```python
-from ddnet_parser import GetProfile
+from ddnet_parser import get_profile
 
-profile = GetProfile()
+profile = get_profile()
 print(profile.get_points())
 ```
 ## Detailed documentation with examples:
